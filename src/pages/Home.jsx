@@ -26,7 +26,7 @@ const About = () => {
       </div>
       <div className=" text-5xl flex justify-center gap-8 py-3 pb-8 ">
         <Link to={"/projects"}>
-          <div className=" md:text-3xl text-xl active:scale-95 inline-block rounded-lg px-4 py-2 text-teal-500 border border-teal-500 bg-transparent">
+          <div className=" md:text-3xl sm:text-xl text-sm active:scale-95 inline-block rounded-lg px-4 py-2 text-teal-500 border border-teal-500 bg-transparent">
             <span className="">Projects</span>
           </div>
         </Link>
@@ -34,7 +34,7 @@ const About = () => {
         <Link to={"/contact"}>
           <div
             href="#contact"
-            className=" md:text-3xl text-xl active:scale-95 inline-block px-4 py-2 rounded-lg text-teal-500 border border-teal-500 bg-transparent"
+            className=" md:text-3xl sm:text-xl text-sm active:scale-95 inline-block px-4 py-2 rounded-lg text-teal-500 border border-teal-500 bg-transparent"
           >
             <span className="">Contact Me!</span>
           </div>

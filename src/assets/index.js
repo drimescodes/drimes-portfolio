@@ -10,7 +10,7 @@ import ts from "./ts.svg"
 import c from "./c.svg"
 import drimes from "./drimes.jpg"
 import drimes1 from "./drimes1.jpg"
-
+import drimes_avatar from "./drimes_avatar.png"
 export {
-    eklektos, hangman, swiftinvoice, getlinked, reactgrabstar, multistepform, js, py, ts, c, drimes, drimes1
+    eklektos, hangman, swiftinvoice, getlinked, reactgrabstar, multistepform, js, py, ts, c, drimes, drimes1, drimes_avatar
 }

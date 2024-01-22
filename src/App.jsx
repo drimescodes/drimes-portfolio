@@ -17,7 +17,7 @@ useEffect(() => {
   return () => clearTimeout(timer); // Clear the timer when the component is unmounted
 }, []);
   return (
-    <div className=" bg-[#1d1d20] px-10 overflow-hidden min-h-[100svh]">
+    <div className=" bg-[#1d1d20] px-8 overflow-hidden min-h-[100svh]">
     {isLoading ? (
       <Loading />
     ) : (
