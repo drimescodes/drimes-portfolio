@@ -96,11 +96,11 @@ const Projects = () => {
     <>
       <section
         id="projects"
-        className=" text-3xl py-2 text-gray-500 font-medium text-center "
+        className=" text-3xl mt-16 sm:mt-24 py-2 text-gray-500 font-medium text-center "
       >
         <h2>Projects</h2>
       </section>
-      <section className=" max-w-screen-xl m-auto md:px-8 py-24 ">
+      <section className=" max-w-screen-xl m-auto md:px-8 py-14 ">
         <motion.div
           className="w-full grid md:grid-cols-2 gap-8"
           variants={animateProject}

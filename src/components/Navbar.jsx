@@ -1,12 +1,19 @@
-import {React,useState} from "react";
-import { HiOutlineDesktopComputer } from "react-icons/hi";
-import {RiCloseLine, RiMenu3Line} from "react-icons/ri";
-import { AiFillGithub, AiFillLinkedin, AiFillTwitterSquare } from "react-icons/ai";
-import { Link, useLocation, NavLink } from "react-router-dom";
+import { React, useState } from "react";
+import { RiCloseLine, RiMenu3Line } from "react-icons/ri";
+import {
+  AiFillGithub,
+  AiFillLinkedin,
+  AiFillTwitterSquare,
+} from "react-icons/ai";
+import { Link, NavLink} from "react-router-dom";
 import { drimes_avatar } from "../assets";
+import { usePage } from "../contexts/PageContext";
+
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
+  const { setCurrentPage } = usePage();
+
   const handleClick = () => {
     setToggle(true);
   };
@@ -14,15 +21,27 @@ const Navbar = () => {
     setToggle(false);
   };
 
+  const handleLinkClick = (pageIndex) => {
+    setCurrentPage(pageIndex);
+
+    setToggle(false); 
+  };
+
+
   return (
-    <nav className="py-4   sm:py-10 mb-12 flex justify-between text-[#cacaca] ; ">
+    <>
+    <nav className="bg-[#1d1d20] w-[100%] p-4 sm:p-6 fixed left-0 right-0 top-0  z-[9999]  flex justify-between text-[#cacaca]  ">
+      <Link to={"/"} >
+        <img
+          src={drimes_avatar}
+          alt=""
+          className="text-3xl font-bold w-10 h-10 rounded-lg border-2 border-[#54d5bb]"
+          onClick={() => handleLinkClick(0)}
+        />
       
-      <Link to={"/"}>
-        {/* <HiOutlineDesktopComputer className="text-3xl font-bold w-10 h-10" /> */}
-        <img src={drimes_avatar} alt="" className="text-3xl font-bold w-10 h-10 rounded-lg border-2 border-[#54d5bb]"/>
       </Link>
 
-{/* Desktop Navbar */}
+      {/* Desktop Navbar */}
       <div className="hidden lg:flex justify-end text-sm">
         <ul className="flex items-center">
           <NavLink
@@ -30,6 +49,7 @@ const Navbar = () => {
             style={({ isActive }) => {
               return isActive ? { color: "#54d5bb" } : {};
             }}
+            onClick={() => handleLinkClick(0)}
           >
             <li className="hover:text-[#54d5bb] mx-6 font-semibold cool-link ">
               Home
@@ -42,6 +62,7 @@ const Navbar = () => {
             style={({ isActive }) => {
               return isActive ? { color: "#54d5bb" } : {};
             }}
+            onClick={() => handleLinkClick(1)}
           >
             <li className="hover:text-[#54d5bb] mx-6 font-semibold cool-link ">
               About Me
@@ -53,6 +74,7 @@ const Navbar = () => {
             style={({ isActive }) => {
               return isActive ? { color: "#54d5bb" } : {};
             }}
+            onClick={() => handleLinkClick(2)}
           >
             <li className="hover:text-[#54d5bb] mx-6 font-semibold cool-link ">
               Experience
@@ -65,6 +87,7 @@ const Navbar = () => {
             style={({ isActive }) => {
               return isActive ? { color: "#54d5bb" } : {};
             }}
+            onClick={() => handleLinkClick(3)}
           >
             <li className="hover:text-[#54d5bb] mx-6 font-semibold cool-link ">
               Projects
@@ -77,6 +100,8 @@ const Navbar = () => {
             style={({ isActive }) => {
               return isActive ? { color: "#54d5bb" } : {};
             }}
+
+            onClick={() => handleLinkClick(4)}
           >
             <li className="hover:text-[#54d5bb] mx-6 font-semibold cool-link ">
               Contact
@@ -96,31 +121,33 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
-  
-{/* Mobile Navbar */}
+
+      {/* Mobile Navbar */}
       <div className="lg:hidden ">
-          {toggle ? (
-            <RiCloseLine size={40} onClick={handleClick1} />
-          ) : (
-            <RiMenu3Line
-              className="cursor-pointer"
-              onClick={handleClick}
-              size={40}
-            />
-          )}
-        </div>
-      
+        {toggle ? (
+          <RiCloseLine size={40} onClick={handleClick1} />
+        ) : (
+          <RiMenu3Line
+            className="cursor-pointer"
+            onClick={handleClick}
+            size={40}
+          />
+        )}
+      </div>
 
       <div
-        className={`min-h-screen overflow-y-hidden absolute top-20 left-0 w-full z-[99999] p-4 bg-[#1d1d20] px-8 lg:hidden transform transition-all duration-500 ease-in-out ${toggle ? "translate-x-0" : "-translate-x-full"
-          }`}
+        className={`min-h-screen overflow-y-hidden absolute top-16 left-0 w-full z-[99999] p-4 bg-[#1d1d20] px-8 lg:hidden transform transition-all duration-500 ease-in-out ${
+          toggle ? "translate-x-0" : "-translate-x-full"
+        }`}
       >
-       <ul className="flex flex-col items-center">
+        <ul className="flex flex-col items-center">
           <NavLink
             to="/"
             style={({ isActive }) => {
               return isActive ? { color: "#54d5bb" } : {};
             }}
+            onClick={() => handleLinkClick(0)}
+
           >
             <li className="hover:text-[#54d5bb] p-4 font-semibold cool-link ">
               Home
@@ -133,6 +160,7 @@ const Navbar = () => {
             style={({ isActive }) => {
               return isActive ? { color: "#54d5bb" } : {};
             }}
+            onClick={() => handleLinkClick(1)}
           >
             <li className="hover:text-[#54d5bb] p-4 font-semibold cool-link ">
               About Me
@@ -144,6 +172,8 @@ const Navbar = () => {
             style={({ isActive }) => {
               return isActive ? { color: "#54d5bb" } : {};
             }}
+            onClick={() => handleLinkClick(2)}
+
           >
             <li className="hover:text-[#54d5bb] p-4 font-semibold cool-link ">
               Experience
@@ -156,6 +186,8 @@ const Navbar = () => {
             style={({ isActive }) => {
               return isActive ? { color: "#54d5bb" } : {};
             }}
+            onClick={() => handleLinkClick(3)}
+
           >
             <li className="hover:text-[#54d5bb] p-4 font-semibold cool-link ">
               Projects
@@ -168,6 +200,8 @@ const Navbar = () => {
             style={({ isActive }) => {
               return isActive ? { color: "#54d5bb" } : {};
             }}
+            onClick={() => handleLinkClick(4)}
+
           >
             <li className="hover:text-[#54d5bb] p-4 font-semibold cool-link ">
               Contact
@@ -186,27 +220,56 @@ const Navbar = () => {
             </a>
           </li>
 
-        
-        <ul className="list-none flex gap-4 p-4 pt-8">
-          <li className="mb-5" initial={{ opacity: 0, x: -70 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.4, delay: .75 }} viewport={{ once: true }}>
-            <a href="https://github.com/drimescodes" target="_blank" rel="noreferrer"><AiFillGithub size={30} /></a>
-          </li>
-          <li className="mb-5" initial={{ opacity: 0, x: -70 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.4, delay: 1 }} viewport={{ once: true }}>
-            <a href="https://www.linkedin.com/in/olamide-bamigbola-a30b9b232/" target="_blank" rel="noreferrer"><AiFillLinkedin size={30} /></a>
-          </li>
-          
-          <li initial={{ opacity: 0, x: -70 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.4, delay: 1.5 }} viewport={{ once: true }}>
-            <a href="https://twitter.com/drimesbot" target="blank"><AiFillTwitterSquare size={30} /></a>
-          </li>
+          <ul className="list-none flex gap-4 p-4 pt-8">
+            <li
+              className="mb-5"
+              initial={{ opacity: 0, x: -70 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.4, delay: 0.75 }}
+              viewport={{ once: true }}
+            >
+              <a
+                href="https://github.com/drimescodes"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <AiFillGithub size={30} />
+              </a>
+            </li>
+            <li
+              className="mb-5"
+              initial={{ opacity: 0, x: -70 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.4, delay: 1 }}
+              viewport={{ once: true }}
+            >
+              <a
+                href="https://www.linkedin.com/in/olamide-bamigbola-a30b9b232/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <AiFillLinkedin size={30} />
+              </a>
+            </li>
+
+            <li
+              initial={{ opacity: 0, x: -70 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.4, delay: 1.5 }}
+              viewport={{ once: true }}
+            >
+              <a href="https://twitter.com/drimesbot" target="blank">
+                <AiFillTwitterSquare size={30} />
+              </a>
+            </li>
+          </ul>
         </ul>
-   
-        </ul>
-        </div>
-       
-   
+      </div>
+
+
     </nav>
-
-
+    <div className="border border-b-2 border-[#54d5bb]"></div>
+    </>
   );
 };
 

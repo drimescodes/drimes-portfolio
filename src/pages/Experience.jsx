@@ -36,7 +36,7 @@ const Experience = () => {
       company: "Personal Tutor",
       duration: "April 2023 - June 2023",
       description: () => (
-        <ul>
+        <ul className=""> 
           <li className="mt-2">
             <span className=" inline-block text-gray-500">
               <IoCaretForwardOutline />
@@ -79,27 +79,25 @@ const Experience = () => {
        This past summer, I delved deeper, mastering Python through hands-on experience with 
        Data Structures and Algorithms on platforms like LeetCode.
        As I continue, I'm gearing up to apply my Python skills in backend development.`,
-      rate: 3,
+      rate: 4,
     },
 
     {
       name: "Typescript",
       start: new Date(2023, 10, 4),
       icon: ts,
-      description:
-        `Exploring TypeScript, a relatively new language for me, has been an enlightening journey. 
+      description: `Exploring TypeScript, a relatively new language for me, has been a fun journey. 
         As a superset of JavaScript, they share common ground, yet TypeScript introduces powerful 
         features. I've been reading the documentation in my spare time, I like the fact that it can execute 
-        JavaScript while enhancing type safety. TypeScript effectively minimizes the potential messiness 
-        and chaos that can arise in pure JavaScript, offering a structured and more productive coding experience.`,
+        JavaScript while enhancing type safety. I like that TypeScript effectively minimizes the potential messiness 
+        and chaos that can arise in pure JavaScript.`,
       rate: 3,
     },
     {
       name: "C",
       start: new Date(2022, 4, 9),
       icon: c,
-      description:
-      `I first encountered C during an online software engineering program called ALX, it was the first 
+      description: `I first encountered C during an online software engineering program called ALX, it was the first 
       language we were taught and my first compiled language. While I haven't yet applied it extensively, 
       the journey into C has provided valuable insights into fundamental programming concepts, particularly 
       in areas like memory management. Although I haven't actively utilized C beyond the learning phase, 
@@ -110,13 +108,13 @@ const Experience = () => {
 
   const [tab, setTab] = useState(0);
   return (
-    <section className="sm:grid grid-cols-2 sm:gap-12 gap-8 md:px-8">
-      <section id="experience" className="  ">
+    <section className="py-24 min-h-screen sm:grid grid-cols-2 sm:gap-12 gap-8 md:px-8 ">
+      <section id="experience" className=" min-h-screen ">
         <h2 className="text-3xl py-2 text-gray-500 font-medium text-center">
           Job Experience
         </h2>
         <p className="py-4 text-white">
-          I have little industrial experience, but these are some of my key
+          These are some of my key
           experiences
         </p>
         {experience.map((data) => (
@@ -146,7 +144,7 @@ const Experience = () => {
         ))}
       </section>
 
-      <section className="">
+      <section className="min-h-screen">
         <h2 className="text-3xl py-2 text-gray-500 font-medium text-center">
           Language Experience
         </h2>
@@ -187,7 +185,7 @@ ${tab == index && "bg-ascent-200/30 border-t-2 border-ascent-200"}`}
             {languageExperience[tab].start.toDateString()}
           </h2>
           <div className="my-2">
-            <p>
+            <p className="text-[#54d5bb]">
               Description
               <FaAngleRight className="inline" />
             </p>
@@ -195,7 +193,7 @@ ${tab == index && "bg-ascent-200/30 border-t-2 border-ascent-200"}`}
               {languageExperience[tab].description}
             </span>
           </div>
-          <div className="flex flex-row gap-1 items-center">
+          <div className="flex flex-row gap-1 items-center text-[#54d5bb]">
             <p>
               Level
               <FaAngleRight className="inline" />
