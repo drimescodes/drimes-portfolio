@@ -17,16 +17,16 @@ const Contact = () => {
 
     emailjs
       .sendForm(
-        import.meta.env.VITE_EMAIL_SERVICE_ID,
-        import.meta.env.VITE_EMAIL_TEMPLATE_ID,
+        import.meta.env.VITE_VERCEL_EMAIL_SERVICE_ID,
+        import.meta.env.VITE_VERCEL_EMAIL_TEMPLATE_ID,
         form.current,
-        import.meta.env.VITE_EMAIL_API_KEY
+        import.meta.env.VITE_VERCEL_EMAIL_API_KEY
       )
       .then(
         (result) => {
           console.log(result.text);
           console.log("message sent");
-          setVerification("Message Sent!, looking forward to connecting!");
+          setVerification("Message Sent!, looking forward to connecting! 😁");
           setShowModal(true);
         },
         (error) => {
@@ -41,6 +41,10 @@ const Contact = () => {
         setEmail("");
         setName("");
         setMessage("");
+        console.log(import.meta.env.VITE_VERCEL_EMAIL_SERVICE_ID);
+        console.log(import.meta.env.VITE_VERCEL_EMAIL_TEMPLATE_ID);
+        console.log(import.meta.env.VITE_VERCEL_EMAIL_API_KEY);
+
       });
   };
 
@@ -107,9 +111,10 @@ const Contact = () => {
             />
           </div>
           <input
+           
             type="submit"
             value="Send"
-            className="py-3 px-5 text-sm border border-teal-500 font-medium text-center text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 "
+            className="cursor-pointer py-3 px-5 text-sm border border-teal-500 font-medium text-center text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 "
           />
         </form>
         {loading && <Spinner />}
