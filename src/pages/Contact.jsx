@@ -32,7 +32,7 @@ const Contact = () => {
         (error) => {
           console.log(error.text);
           console.log("message failed");
-          setVerification("Message Failed to Send!");
+          setVerification("Message Failed to Send! 😢");
           setShowModal(true);
         }
       )

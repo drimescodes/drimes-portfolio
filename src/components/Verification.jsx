@@ -5,13 +5,26 @@ const VerificationModal = ({ verification, onClose }) => {
   useEffect(() => {
     document.body.classList.add("modal-open");
 
+    // Add event listener to close modal when clicking outside of it
+    const handleOutsideClick = (event) => {
+      if (!event.target.closest(".modal-content")) {
+        onClose();
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+    document.addEventListener("touchstart", handleOutsideClick);
+
     return () => {
       document.body.classList.remove("modal-open");
+      document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener("touchstart", handleOutsideClick);
+
     };
-  }, []);
+  }, [onClose]);
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-      <div className=" bg-white rounded-lg shadow-md p-6 w-[90%] md:max-w-md">
+      <div className=" bg-white rounded-lg shadow-md p-6 w-[90%] md:max-w-md modal-content">
         <div className="flex justify-end">
           <button
             onClick={onClose}
