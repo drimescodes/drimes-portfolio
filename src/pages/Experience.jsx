@@ -16,45 +16,43 @@ const Experience = () => {
             <span className=" inline-block text-gray-500">
               <IoCaretForwardOutline />
             </span>
-            Implemented major features for the proptech platform
-          </li>
+            Implemented a responsive landing page, improving user engagement by 20%.          </li>
           <li className="mt-2">
             {" "}
             <span className=" inline-block text-gray-500">
               <IoCaretForwardOutline />
             </span>
-            Worked with product designers and made sure the web app looked as
-            much as the figma design{" "}
+            Optimized web app performance, reducing load time by 30%
           </li>
         </ul>
       ),
     },
 
-    {
-      year: "2023",
-      title: "Python Tutor",
-      company: "Personal Tutor",
-      duration: "April 2023 - June 2023",
-      description: () => (
-        <ul className=""> 
-          <li className="mt-2">
-            <span className=" inline-block text-gray-500">
-              <IoCaretForwardOutline />
-            </span>
-            Tutored a student wanting to gain admission into college on his
-            IGSCE exam, computer science
-          </li>
-          <li className="mt-2">
-            {" "}
-            <span className=" inline-block text-gray-500">
-              <IoCaretForwardOutline />
-            </span>
-            Made Sure he understood the concepts well and could attempt
-            questions on his own
-          </li>
-        </ul>
-      ),
-    },
+    // {
+    //   year: "2023",
+    //   title: "Python Tutor",
+    //   company: "Personal Tutor",
+    //   duration: "April 2023 - June 2023",
+    //   description: () => (
+    //     <ul className=""> 
+    //       <li className="mt-2">
+    //         <span className=" inline-block text-gray-500">
+    //           <IoCaretForwardOutline />
+    //         </span>
+    //         Tutored a student wanting to gain admission into college on his
+    //         IGSCE exam, computer science
+    //       </li>
+    //       <li className="mt-2">
+    //         {" "}
+    //         <span className=" inline-block text-gray-500">
+    //           <IoCaretForwardOutline />
+    //         </span>
+    //         Made Sure he understood the concepts well and could attempt
+    //         questions on his own
+    //       </li>
+    //     </ul>
+    //   ),
+    // },
   ];
 
   const languageExperience = [
@@ -108,15 +106,13 @@ const Experience = () => {
 
   const [tab, setTab] = useState(0);
   return (
-    <section className="py-24 min-h-screen sm:grid grid-cols-2 sm:gap-12 gap-8 md:px-8 ">
-      <section id="experience" className=" min-h-screen ">
-        <h2 className="text-3xl py-2 text-gray-500 font-medium text-center">
+    <section>
+    <section className="py-24 min-h-screen sm:grid grid-cols-2  sm:gap-12  md:px-8 ">
+      <section id="experience" className="">
+        <h2 className="text-3xl pt-2 pb-10 text-gray-500 font-medium text-center">
           Job Experience
         </h2>
-        <p className="py-4 text-white">
-          These are some of my key
-          experiences
-        </p>
+        
         {experience.map((data) => (
           <ol className="flex flex-col md:flex-row relative border-l border-stone-300">
             <li className="mb-10 ml-4">
@@ -154,7 +150,7 @@ const Experience = () => {
 
         <div className="flex">
           {languageExperience.map((data, index) => (
-            <ul className=" my-3 flex flex-row justify-between w-full text-center border-t-2 border-blue">
+            <ul className=" my-3 flex flex-row justify-between w-full text-center border-t-2 border-gray-500">
               <li
                 key={index}
                 className={`w-full h-12 pt-3 cursor-pointer hover:bg-ascent-200/40 -mt-0.5
@@ -162,7 +158,7 @@ const Experience = () => {
 ${tab == index && "bg-ascent-200/30 border-t-2 border-ascent-200"}`}
                 onClick={() => setTab(index)}
               >
-                <p weight="bold" font="ubuntu" color="text-ascent-300">
+                <p weight="bold"  className="text-white">
                   {data.name}
                 </p>
               </li>
@@ -209,6 +205,11 @@ ${tab == index && "bg-ascent-200/30 border-t-2 border-ascent-200"}`}
           </div>
         </article>
       </section>
+    </section>
+
+    <section className="mt=5">
+      Volunteer and Open Source
+    </section>
     </section>
   );
 };
