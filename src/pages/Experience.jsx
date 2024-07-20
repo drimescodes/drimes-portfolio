@@ -28,31 +28,31 @@ const Experience = () => {
       ),
     },
 
-    // {
-    //   year: "2023",
-    //   title: "Python Tutor",
-    //   company: "Personal Tutor",
-    //   duration: "April 2023 - June 2023",
-    //   description: () => (
-    //     <ul className=""> 
-    //       <li className="mt-2">
-    //         <span className=" inline-block text-gray-500">
-    //           <IoCaretForwardOutline />
-    //         </span>
-    //         Tutored a student wanting to gain admission into college on his
-    //         IGSCE exam, computer science
-    //       </li>
-    //       <li className="mt-2">
-    //         {" "}
-    //         <span className=" inline-block text-gray-500">
-    //           <IoCaretForwardOutline />
-    //         </span>
-    //         Made Sure he understood the concepts well and could attempt
-    //         questions on his own
-    //       </li>
-    //     </ul>
-    //   ),
-    // },
+    {
+      year: "2023",
+      title: "Python Tutor",
+      company: "Personal Tutor",
+      duration: "April 2023 - June 2023",
+      description: () => (
+        <ul className=""> 
+          <li className="mt-2">
+            <span className=" inline-block text-gray-500">
+              <IoCaretForwardOutline />
+            </span>
+            Tutored a student wanting to gain admission into college on his
+            IGSCE exam, computer science
+          </li>
+          <li className="mt-2">
+            {" "}
+            <span className=" inline-block text-gray-500">
+              <IoCaretForwardOutline />
+            </span>
+            Made Sure he understood the concepts well and could attempt
+            questions on his own
+          </li>
+        </ul>
+      ),
+    },
   ];
 
   const languageExperience = [
@@ -207,9 +207,10 @@ ${tab == index && "bg-ascent-200/30 border-t-2 border-ascent-200"}`}
       </section>
     </section>
 
-    <section className="mt=5">
+    {/* <section className="mt=5">
       Volunteer and Open Source
-    </section>
+    </section> */}
+    
     </section>
   );
 };
