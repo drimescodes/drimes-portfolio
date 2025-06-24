@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { usePage } from "../contexts/PageContext";
-const About = () => {
+const Home = () => {
   const { setCurrentPage } = usePage();
   const handleLinkClick = (pageIndex) => {
     setCurrentPage(pageIndex);
@@ -12,8 +12,8 @@ const About = () => {
   };
 
   return (
-    <div className=" flex flex-col justify-center  min-h-screen mt-16 sm:mt-0">
-      <div className="max-w-screen-md mx-auto">
+    <div className=" flex flex-col justify-center mt-20 lg:mt-24 xl:mt-44 ">
+      <div className="max-w-screen-lg mx-auto">
         <h3 className="text-[#54d5bb]">Hi, my name is</h3>
         <h1 className=" text-6xl py-2 text-[#cacaca] font-medium">Drimes</h1>
         <h3 className=" text-4xl py-2 text-[#8892b0]">Frontend Developer</h3>
@@ -55,4 +55,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default Home;
