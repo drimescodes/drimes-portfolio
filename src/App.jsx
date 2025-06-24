@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 
 import { About, Home, Experience, Projects, Contact } from "./pages";
 import { Navbar, Loading, Footer } from "./components";
-import { Routes, Route } from "react-router";
+import { Routes, Route, useLocation } from "react-router";
 import { PageProvider } from "./contexts/PageContext";
 
 function App() {
+  const location = useLocation();
+  const isHome = location.pathname === "/";
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     // Simulating a 1-second delay before loading the main page
@@ -15,6 +17,13 @@ function App() {
 
     return () => clearTimeout(timer); // Clear the timer when the component is unmounted
   }, []);
+  useEffect(() => {
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: "instant", // or "smooth"
+  });
+}, [location.pathname]);
 
   const [currentPage, setCurrentPage] = useState(0);
   const pages = ["/", "/aboutme", "/experience", "/projects", "/contact"];
@@ -28,23 +37,27 @@ function App() {
   return (
 
     <PageProvider>
-    <div className=" bg-[#1d1d20] px-8 overflow-hidden min-h-screen">
+    <div
+  className={`${isHome ? "sm:h-screen" : "min-h-screen"} bg-[#1d1d20] px-8 flex flex-col overflow-hidden`}
+>
+
       {isLoading ? (
         <Loading />
       ) : (
         <>
-          <header className=" ">
+          
             <Navbar />
+            <main
+              
+            >
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/aboutme" element={<About />} />
-            </Routes>
-          </header>
-          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/aboutme" element={<About />} />
             <Route path="/experience" element={<Experience />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
+          </main>
           <Footer />
         </>
       )}

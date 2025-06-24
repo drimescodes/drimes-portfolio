@@ -96,71 +96,76 @@ const Projects = () => {
     <>
       <section
         id="projects"
-        className=" text-3xl mt-16 sm:mt-24 py-2 text-gray-500 font-medium text-center "
+        className="text-3xl mt-16 sm:mt-24 py-2 text-gray-500 font-medium text-center"
       >
         <h2>Projects</h2>
       </section>
-      <section className=" max-w-screen-xl m-auto md:px-8 py-14 ">
+      <section className="max-w-screen-xl m-auto md:px-8 py-14  min-h-screen overflow-hidden">
         <motion.div
-          className="w-full grid md:grid-cols-2 gap-8"
+          className="w-full grid md:grid-cols-2 gap-8 "
           variants={animateProject}
           initial="hidden"
           whileInView="animate"
           viewport={{ once: true }}
         >
           {projects.map((project) => (
-            <a href={project.deployed} target="_blank">
-              <motion.div
-                key={project.title}
-                className=" relative group"
-                variants={animateProjectItem}
-                viewport={{ once: true }}
-              >
-                {/* modifyiong */}
-                <div
-                  className="relative overflow-hidden rounded-lg bg-cover bg-no-repeat text-center opacity-90 hover:opacity-100 transition-all shadow-lg dark:shadow-gray-900"
-                  style={{
-                    backgroundImage: `url(${project.thumbnail})`,
-                    height: "300px",
-                  }}
-                >
-                  <div
-                    className="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-fixed transition-all duration-700 lg:opacity-0 opacity-80 bg-gradient-to-t from-[#222222] via-slate-600 to-opacity-30 lg:group-hover:opacity-80 px-4"
-                    // style={{backgroundColor: 'rgba(0, 0, 0, 0.6)'}}
-                  >
-                    <div className="  flex h-full items-center justify-center ">
-                      <div className="text-white ">
-                        <h3 className="mb-2 font-semibold text-sky-200 text-2xl uppercase drop-shadow-md tracking-tighter">
-                          {project.title}
-                        </h3>
-                        <p className="text-white text-sm tracking-tight leading-snug drop-shadow-md font-semibold">
-                          {project.description}
-                        </p>
-                        <p className="text-sky-200 text-sm font-semibold py-4">
-                          {project.technology}
-                        </p>
-                        <div className="hidden lg:flex flex-row justify-center align-center text-center text-5xl text-gray-900">
-                          <a
-                            href={project.github}
-                            target="_blank"
-                            className="mr-10 "
-                          >
-                            <AiFillGithub />
-                          </a>
-                          <a
-                            href={project.deployed}
-                            target="_blank"
-                            className=""
-                          >
-                            <FiExternalLink />
-                          </a>
-                        </div>
-                      </div>
-                    </div>
+            <motion.div
+              key={project.title}
+              className="relative rounded-lg overflow-hidden h-[350px] flex flex-col "
+              variants={animateProjectItem}
+              viewport={{ once: true }}
+            >
+              {/* Project Thumbnail */}
+              <div 
+                className="h-48 bg-cover bg-center"
+                style={{
+                  backgroundImage: `url(${project.thumbnail})`,
+                }}
+              ></div>
+              
+              {/* Project Details */}
+              <div className="p-5 bg-[#222222] flex-1 flex flex-col">
+                <h3 className="mb-2 font-semibold text-[#54d5bb] text-xl uppercase tracking-tighter">
+                  {project.title}
+                </h3>
+                
+                <p className="text-white text-sm tracking-tight leading-snug font-medium mb-3 flex-1">
+                  {project.description}
+                </p>
+                
+                <div className="flex items-center justify-between">
+                  <span className="text-[#54d5bb] text-xs font-semibold">
+                    {project.technology}
+                  </span>
+                  
+                  <div className="flex space-x-4">
+                    {project.github !== "#" && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-300 hover:text-sky-300 transition-colors"
+                        aria-label="View GitHub repository"
+                      >
+                        <AiFillGithub className="text-2xl hover:bg-sky-300" />
+                      </a>
+                    )}
+                    
+                    <a
+                      href={project.deployed}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-300 hover:text-sky-300 transition-colors"
+                      aria-label="View live project"
+                    >
+                      <FiExternalLink className="text-2xl" />
+                    </a>
                   </div>
                 </div>
-              </motion.div>
-            </a>
+              </div>
+              
+             
+            </motion.div>
           ))}
         </motion.div>
       </section>

@@ -35,7 +35,7 @@ const Navbar = () => {
         <img
           src={drimes_avatar}
           alt=""
-          className="text-3xl font-bold w-10 h-10 rounded-lg border-2 border-[#54d5bb]"
+          className="text-3xl font-bold w-8 h-8 rounded-lg border-2 border-[#54d5bb]"
           onClick={() => handleLinkClick(0)}
         />
       
@@ -125,12 +125,12 @@ const Navbar = () => {
       {/* Mobile Navbar */}
       <div className="lg:hidden ">
         {toggle ? (
-          <RiCloseLine size={40} onClick={handleClick1} />
+          <RiCloseLine size={30} onClick={handleClick1} />
         ) : (
           <RiMenu3Line
             className="cursor-pointer"
             onClick={handleClick}
-            size={40}
+            size={30}
           />
         )}
       </div>
