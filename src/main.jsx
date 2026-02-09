@@ -7,7 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 // Dynamically determine basename based on current URL
 // If we are at /v1 (main site subpath), use /v1
 // If we are at / (v1 site root), use /
-const basename = window.location.pathname.startsWith("/v1") ? "/v1" : "/";
+const basename = /^\/v1($|\/)/.test(window.location.pathname) ? "/v1" : "/";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
