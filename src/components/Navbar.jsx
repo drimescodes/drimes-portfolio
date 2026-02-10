@@ -38,9 +38,6 @@ const Navbar = () => {
             className="text-3xl font-bold w-10 h-10 rounded-lg border-2 border-[#54d5bb]"
             onClick={() => handleLinkClick(0)}
           />
-          <div className="absolute top-0 left-14 text-xs text-white bg-red-500 p-1">
-            Path: {typeof window !== 'undefined' ? window.location.pathname : 'SSR'}
-          </div>
         </Link>
 
         {/* Desktop Navbar */}
