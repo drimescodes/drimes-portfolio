@@ -1,6 +1,6 @@
 import React from "react";
 import { drimes1 } from "../assets";
-import { NowPlaying, VersionHistory } from "../components";
+import { NowPlayingYTM, VersionHistory } from "../components";
 
 const Introduction = () => {
   return (
@@ -52,8 +52,8 @@ const Introduction = () => {
               aim to learn more about. It serves as a refreshing way to clear my
               mind.
             </p>
-            <p className="text-[#cacaca] mb-4">You can peep what I'm playing rn on my spotify</p>
-            <NowPlaying />
+            <p className="text-[#cacaca] mb-4">You can peep what I'm listening to rn</p>
+            <NowPlayingYTM />
             <VersionHistory />
           </div>
           <div className="md:w-1/3 flex justify-center md:justify-start mt-5">
