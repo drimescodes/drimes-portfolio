@@ -8,10 +8,10 @@ import js from "./js.svg"
 import py from "./python.svg"
 import ts from "./ts.svg"
 import c from "./c.svg"
-import drimes from "./drimes.jpg"
 import drimes1 from "./drimes1.jpg"
 import drimes_avatar from "./drimes_avatar.png"
+import bimpe from "./bimpe.png"
 import soundbar from "./soundbar.gif"
 export {
-    eklektos, hangman, swiftinvoice, getlinked, reactgrabstar, multistepform, js, py, ts, c, drimes, drimes1, drimes_avatar, soundbar
+    eklektos, hangman, swiftinvoice, getlinked, reactgrabstar, multistepform, js, py, ts, c, drimes1, drimes_avatar, soundbar, bimpe
 }

@@ -15,17 +15,16 @@ const Loading = () => {
     return (
       <div className="flex flex-col items-center justify-center h-[100svh]">
         <motion.div
-          className="text-3xl font-bold w-10 h-10"
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <HiOutlineDesktopComputer className="text-[#cacaca] text-3xl font-bold w-20 h-20 " />
+          <HiOutlineDesktopComputer className="text-[#cacaca] w-12 h-12" />
         </motion.div>
         <motion.div
-          className="mt-14 h-2 w-40 bg-gray-200 rounded"
+          className="mt-5 h-1.5 bg-gray-200 rounded-full"
           initial={{ width: 0 }}
-          animate={{ width: "40%" }}
+          animate={{ width: "10rem" }}
           transition={{ duration: 1 }}
         ></motion.div>
       </div>

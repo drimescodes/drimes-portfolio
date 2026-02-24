@@ -138,7 +138,7 @@ const NowPlayingYTM = () => {
 
                 {/* Track Info + Progress */}
                 <div className="flex-1 overflow-hidden">
-                    <p className="text-xs text-[#54d5bb] mb-1">
+                    <p className="text-[0.45rem] md:text-xs text-[#54d5bb] mb-1">
                         {isPlaying
                             ? "🎵 Now Playing on YouTube Music"
                             : "🎵 Last Played"}

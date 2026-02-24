@@ -16,16 +16,15 @@ const Home = () => {
       <div className="max-w-screen-lg mx-auto">
         <h3 className="text-[#54d5bb]">Hi, my name is</h3>
         <h1 className=" text-6xl py-2 text-[#cacaca] font-medium">Drimes</h1>
-        <h3 className=" text-4xl py-2 text-[#8892b0]">Frontend Developer</h3>
-        {/* <img className=" relative mx-auto bg-gradient-to-b from-teal-500 rounded-full w-80 h-80 mt-5 overflow-hidden" src="1682471997680.jpg" alt="profileImage"></img> */}
+        <h3 className=" text-4xl py-2 text-[#8892b0]">Software Engineer</h3>
         <p className="text-lg py-5 leading-8 text-[#cacaca]">
-          As a frontend developer, I bring creativity with a solid grasp of web
-          technologies to create engaging and user-friendly interfaces.
-          Passionate about building accessible websites, I am eager to
-          contribute and learn in a collaborative development environment.{" "}
+          I build things across the stack — mobile apps, web platforms, APIs,
+          browser extensions, automation bots and whatever else the problem calls for. Currently
+          shipping production software with React Native, React/Next.js, FastAPI, and
+          PostgreSQL.
         </p>
       </div>
-      <div className=" text-5xl flex justify-center gap-8 py-3 pb-8 ">
+      <div className="max-w-screen-lg mx-auto w-full text-5xl flex justify-start gap-8 pt-6 pb-8 ">
         <Link to={"/projects"}>
           <div
             className=" md:text-3xl sm:text-xl text-sm active:scale-95 inline-block rounded-lg px-4 py-2 text-teal-500 border border-teal-500 bg-transparent"
@@ -43,7 +42,7 @@ const Home = () => {
             href="#contact"
             className=" md:text-3xl sm:text-xl text-sm active:scale-95 inline-block px-4 py-2 rounded-lg text-teal-500 border border-teal-500 bg-transparent"
             onClick={() => {
-              handleLinkClick(3);
+              handleLinkClick(4);
               scrollToTop();
             }}
           >

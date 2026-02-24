@@ -116,7 +116,7 @@ const Footer = () => {
 
       <div className="flex flex-col justify-center items-center mt-4">
         <p>Made by drimes</p>
-        <p>@ 2024. All rights reserved</p>
+        <p>@ 2026. All rights reserved</p>
       </div>
     </footer>
   );
