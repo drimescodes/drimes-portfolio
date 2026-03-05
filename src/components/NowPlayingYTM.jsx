@@ -4,6 +4,8 @@ import { soundbar } from "../assets";
 import { AiOutlinePauseCircle } from "react-icons/ai";
 import { HiOutlineStatusOffline } from "react-icons/hi";
 
+const MY_USER_ID = "47855d9c-e601-4926-a185-0e89190cc440";
+
 const NowPlayingYTM = () => {
     const [song, setSong] = useState(null);
     const [currentProgress, setCurrentProgress] = useState(0);
@@ -14,8 +16,7 @@ const NowPlayingYTM = () => {
             const { data, error } = await supabase
                 .from("now_playing")
                 .select("*")
-                .order("updated_at", { ascending: false })
-                .limit(1)
+                .eq("user_id", MY_USER_ID)
                 .single();
 
             if (!error && data) {
@@ -30,7 +31,7 @@ const NowPlayingYTM = () => {
             .channel("now_playing_changes")
             .on(
                 "postgres_changes",
-                { event: "*", schema: "public", table: "now_playing" },
+                { event: "*", schema: "public", table: "now_playing", filter: `user_id=eq.${MY_USER_ID}` },
                 (payload) => {
                     setSong(payload.new);
                 }
@@ -77,7 +78,7 @@ const NowPlayingYTM = () => {
 
     // Check if data is stale (> 5 minutes old = probably not listening)
     const isStale = song?.updated_at
-        ? Date.now() - new Date(song.updated_at).getTime() > 5 * 60 * 1000
+        ? Date.now() - new Date(song.updated_at).getTime() > 10 * 60 * 1000
         : true;
 
     if (!song) {
@@ -145,8 +146,8 @@ const NowPlayingYTM = () => {
                     </p>
                     <p
                         className={`text-sm font-medium text-white truncate ${song.title?.length > 15
-                                ? "animate-marquee sm:animate-none whitespace-nowrap"
-                                : ""
+                            ? "animate-marquee sm:animate-none whitespace-nowrap"
+                            : ""
                             }`}
                     >
                         {song.title}

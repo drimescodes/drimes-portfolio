@@ -3,54 +3,11 @@ import { motion } from "framer-motion";
 import { AiFillGithub } from "react-icons/ai";
 import { FiExternalLink } from "react-icons/fi";
 import { IoBookOutline } from "react-icons/io5";
-import {
-  eklektos,
-  hangman,
-  swiftinvoice,
-  getlinked,
-  reactgrabstar,
-  multistepform,
-  bimpe,
-} from "../assets";
+import projects from "../constants/projects";
 import ProjectDetail from "../components/ProjectDetail";
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
-
-  const projects = [
-    {
-      title: "Bímpé",
-      thumbnail: bimpe,
-      description:
-        "An all-in-one celebration platform — WhatsApp birthday bot, card studio, flipbooks, and surprise calls.",
-      backstory:
-        "Bímpé started as a simple WhatsApp birthday bot for group communities. The idea was straightforward: set it up once, collect birthdays with a form link, and it handles timely birthday wishes without anyone having to remember. But it grew into something much bigger. I added a card studio where you can design and download personalized cards with different templates, textures, and fonts. Then came interactive flipbooks — full storybooks with text, photos, and videos with realistic page-turn effects. The latest addition is surprise voice calls through Athena. It's currently serving 50+ WhatsApp groups across different countries and I'm still building it out.",
-      technology: "TanStack Start / Bun / SQLite / Drizzle",
-      github: "#",
-      deployed: "https://bimpe.xyz",
-    },
-    {
-      title: "Hangman Game",
-      thumbnail: hangman,
-      description:
-        "A word web game, you are to guess a word letter by letter which you are given 7 tries for each word",
-      backstory:
-        "This was one of my earliest projects. I wanted to build something fun to practice vanilla JavaScript and DOM manipulation. The game picks a random word and you have to guess it letter by letter with only 7 tries. Simple concept, but it taught me a lot about state management before I even knew what state management was.",
-      technology: "VanillaJs / Tailwind",
-      github: "#",
-      deployed: "https://hangman-game-sooty.vercel.app/",
-    },
-    {
-      title: "React Grabster",
-      thumbnail: reactgrabstar,
-      description: "A landing page clone of the react grabstar website",
-      backstory:
-        "A pixel-perfect clone I built to sharpen my React and CSS skills. The original site had some interesting layout patterns that challenged me to think about responsive design differently.",
-      technology: "ReactJS / Tailwind",
-      github: "https://github.com/drimescodes/react-grabstar",
-      deployed: "https://react-grabstar.vercel.app/",
-    },
-  ];
 
   const animateProject = {
     hidden: { opacity: 0, y: 50 },
@@ -127,7 +84,7 @@ const Projects = () => {
 
                   <div className="flex space-x-4 items-center">
                     {/* Read more icon */}
-                    {project.backstory && (
+                    {project.overview && (
                       <button
                         onClick={() => setSelectedProject(project)}
                         className="text-gray-300 hover:text-[#54d5bb] transition-colors"

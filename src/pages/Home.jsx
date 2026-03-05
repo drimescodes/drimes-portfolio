@@ -18,7 +18,7 @@ const Home = () => {
         <h1 className=" text-6xl py-2 text-[#cacaca] font-medium">Drimes</h1>
         <h3 className=" text-4xl py-2 text-[#8892b0]">Software Engineer</h3>
         <p className="text-lg py-5 leading-8 text-[#cacaca]">
-          I build things across the stack — mobile apps, web platforms, APIs,
+          I build things across the stack, be it mobile apps, web platforms, APIs,
           browser extensions, automation bots and whatever else the problem calls for. Currently
           shipping production software with React Native, React/Next.js, FastAPI, and
           PostgreSQL.
