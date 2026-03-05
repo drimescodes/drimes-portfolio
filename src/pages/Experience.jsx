@@ -222,7 +222,7 @@ const Experience = () => {
   return (
     <section>
       <section className="py-24 min-h-screen sm:grid grid-cols-2  sm:gap-12  md:px-8 ">
-        <section id="experience" className="sm:max-h-[calc(100vh-8rem)] sm:overflow-y-auto scrollbar-hide">
+        <section id="experience" className="sm:max-h-[calc(100vh-4rem)] sm:overflow-y-auto scrollbar-hide">
           <h2 className="text-3xl pt-2 pb-10 text-gray-500 font-medium text-center">
             Job Experience
           </h2>

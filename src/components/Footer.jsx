@@ -11,8 +11,8 @@ import {
 import {
   AiFillGithub,
   AiFillLinkedin,
-  AiFillTwitterSquare,
 } from "react-icons/ai";
+import { RiTwitterXFill } from "react-icons/ri";
 
 const Footer = () => {
   const { currentPage, setCurrentPage } = usePage();
@@ -78,8 +78,8 @@ const Footer = () => {
             transition={{ duration: 0.4, delay: 1.5 }}
             viewport={{ once: true }}
           >
-            <a href="https://twitter.com/drimesbot" target="blank">
-              <AiFillTwitterSquare size={30} />
+            <a href="https://x.com/drimesbot" target="blank">
+              <RiTwitterXFill size={30} />
             </a>
           </motion.li>
         </ul>

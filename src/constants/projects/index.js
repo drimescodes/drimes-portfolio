@@ -4,7 +4,8 @@ import ytm from "./ytm";
 import glorion from "./glorion";
 import hangman from "./hangman";
 import grabster from "./grabster";
+import readre from "./readre";
 
-const projects = [bimpe, anime, ytm, glorion, hangman, grabster];
+const projects = [bimpe, glorion, anime, ytm, readre, hangman, grabster];
 
 export default projects;

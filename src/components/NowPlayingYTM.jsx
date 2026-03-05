@@ -76,9 +76,9 @@ const NowPlayingYTM = () => {
         return () => clearInterval(progressTimer.current);
     }, [song]);
 
-    // Check if data is stale (> 5 minutes old = probably not listening)
+    // Check if data is stale (> 15 minutes old = probably not listening)
     const isStale = song?.updated_at
-        ? Date.now() - new Date(song.updated_at).getTime() > 10 * 60 * 1000
+        ? Date.now() - new Date(song.updated_at).getTime() > 15 * 60 * 1000
         : true;
 
     if (!song) {

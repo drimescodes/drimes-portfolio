@@ -5,7 +5,7 @@ const VersionHistory = () => {
     return (
         <div className="mt-10">
             <h3 className="text-gray-400 font-bold text-xl mb-2">Version History</h3>
-            <p className="text-[#8892b0] text-sm mb-4">Past versions of this portfolio, preserved for the memories.</p>
+            <p className="text-[#8892b0] text-sm mb-4">Past versions of this portfolio, preserved for the memories and an indicator of growth.</p>
             <div className="flex flex-col gap-3">
                 {versions.map((v) => (
                     <a
