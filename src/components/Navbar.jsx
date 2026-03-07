@@ -111,7 +111,7 @@ const Navbar = () => {
             <li>
               <a
                 className="bg-gradient-to-r from-cyan-500 to-teal-500 bg-cyan-500 text-white px-4 py-2 rounded-md ml-8"
-                href="https://drive.google.com/file/d/1_4PkJ9dFicycXIAZujvzbw-i3UghY4Ic/view?usp=sharing"
+                href="https://drive.google.com/file/d/1L3LfWN30588irAwlWyd1jET2Xm8NvNbw/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer" // Add rel="noopener noreferrer" for security reasons
               >
@@ -210,7 +210,7 @@ const Navbar = () => {
             <li className="p-4">
               <a
                 className="bg-gradient-to-r from-cyan-500 to-teal-500 bg-cyan-500 text-white px-4 py-2 rounded-md "
-                href="https://drive.google.com/file/d/1_4PkJ9dFicycXIAZujvzbw-i3UghY4Ic/view?usp=sharing"
+                href="https://drive.google.com/file/d/1L3LfWN30588irAwlWyd1jET2Xm8NvNbw/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer" // Add rel="noopener noreferrer" for security reasons
               >
