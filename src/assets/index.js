@@ -9,7 +9,7 @@ import py from "./python.svg"
 import ts from "./ts.svg"
 import c from "./c.svg"
 import drimes1 from "./drimes1.jpg"
-import drimes_avatar from "./drimes_avatar.png"
+import drimes_avatar from "./drimes-art-cropped.webp"
 import bimpe from "./bimpe.png"
 import soundbar from "./soundbar.gif"
 

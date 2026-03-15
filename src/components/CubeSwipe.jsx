@@ -41,7 +41,7 @@ const CubeSwipe = ({ children, nonMainPage }) => {
             const timer = setTimeout(() => {
                 setShowHint(false);
                 sessionStorage.setItem("swipe-hint-seen", "true");
-            }, 4000);
+            }, 8000);
             return () => clearTimeout(timer);
         }
     }, []);

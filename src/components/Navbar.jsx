@@ -34,7 +34,7 @@ const Navbar = () => {
           <img
             src={drimes_avatar}
             alt=""
-            className="text-3xl font-bold w-8 h-8 rounded-lg border-2 border-[#54d5bb]"
+            className="text-3xl font-bold w-8 h-8 md:w-10 md:h-10 rounded-lg object-cover border-2 border-[#54d5bb]"
             onClick={() => handleLinkClick(0)}
           />
 

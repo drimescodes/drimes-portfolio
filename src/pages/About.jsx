@@ -1,4 +1,3 @@
-import React from "react";
 import { drimes1 } from "../assets";
 import { NowPlayingYTM, VersionHistory } from "../components";
 import { Link } from "react-router-dom";

@@ -24,10 +24,10 @@ const ytm = {
     media: [ytm1, ytm2, ytm3, ytm4, ytm5, ytm6],
     technology: "JavaScript / Chrome API / Supabase",
     github: "https://github.com/drimescodes/ytm-extension",
-    deployed: "https://chromewebstore.google.com/detail/ytm-now-playing/YOUR_CHROME_ID",
+    deployed: "https://chromewebstore.google.com/detail/ytm-now-playing/cdolfnamdlfmngfeieemflillohdbjcl",
     links: [
-        { label: "Chrome Web Store", url: "https://chromewebstore.google.com/detail/ytm-now-playing/YOUR_CHROME_ID" },
-        { label: "Firefox Add-ons", url: "https://addons.mozilla.org/en-US/firefox/addon/ytm-now-playing/" },
+        { label: "Chrome Web Store", url: "https://chromewebstore.google.com/detail/ytm-now-playing/cdolfnamdlfmngfeieemflillohdbjcl" },
+        { label: "Firefox Add-ons", url: "https://addons.mozilla.org/addon/ytm-now-playing/" },
         { label: "Tutorial", url: "https://medium.com/@drimesbot/how-to-show-what-youre-currently-listening-to-on-your-personal-website-or-portfolio-spotify-635f433978a0" },
     ],
 };

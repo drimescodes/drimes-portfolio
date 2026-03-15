@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { usePage } from "../contexts/PageContext";
 const Home = () => {
