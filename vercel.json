@@ -1,8 +1,20 @@
 {
-  "rewrites": [
+  "redirects": [
+    {
+      "source": "/v1",
+      "destination": "https://drimes-portfolio-v1.vercel.app",
+      "permanent": false
+    },
     {
       "source": "/v1/:match*",
-      "destination": "https://drimes-portfolio-v1.vercel.app/:match*"
+      "destination": "https://drimes-portfolio-v1.vercel.app/:match*",
+      "permanent": false
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }

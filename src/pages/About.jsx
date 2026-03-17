@@ -28,6 +28,7 @@ const Introduction = () => {
               <a
                 href="/v1/aboutme"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="text-[#54d5bb] hover:underline"
               >
                 v1 of this portfolio
@@ -40,6 +41,7 @@ const Introduction = () => {
               <a
                 href="https://genius.com/"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="text-[#54d5bb]"
               >
                 Genius
