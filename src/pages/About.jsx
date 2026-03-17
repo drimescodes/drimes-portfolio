@@ -26,7 +26,7 @@ const Introduction = () => {
               whatever tool the problem needs and figuring it out. The full
               origin story is on{" "}
               <a
-                href="https://drimes-portfolio.vercel.app/v1/aboutme"
+                href="/v1/aboutme"
                 target="_blank"
                 className="text-[#54d5bb] hover:underline"
               >
