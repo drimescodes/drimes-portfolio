@@ -1,10 +1,24 @@
 // Each thought is an object with a slug, title, date, and content (array of paragraphs).
 // Add new thoughts to the top of this array.
 const thoughts = [
+
+    {
+        slug: "flow-state-or-flaw-state",
+        title: "Flow State or Flaw State",
+        date: "14 March 2026",
+        content: [
+            "flow state or flaw state.",
+            "when you are doing really bad but somehow still in a flowy state, i think we can call that flaw state.",
+            "like in a cbt exam you didn't read for, but you have some basic knowledge from wherever, then you start winging stuffs and choosing answers with full confidence. In your head you are in flow, but most of the answers are probably wrong.",
+            "another instance of flaw state is in random life stuff too, say you are washing dishes, break a plate, cook bad food, stub your toe, get stomach pain all in the same one day, just a series of bad events happening but you are still moving in one strange flowy mode.",
+            "flaw state is getting bugs on bugs but keep bruteforcing the whole, from one bug to another, sometimes flaw state can be satisfying to observe from your subconscious, the realization: like ohh I'm in flaw state",
+            "flaw state is typing a sentence on the keyboard and getting everything wrong as you type"
+        ],
+    },
     {
         slug: "looking-forward",
         title: "Looking Forward to the Uncertain Future",
-        date: "February 2026",
+        date: "21 February 2026",
         content: [
             "I'm in year 4 of school now. Been doing school with code tinkerings this whole time. It's been hard but I'm trying. I've worked so hard and tried to be consistent, but I haven't made enough money that I thought I would have made. I didn't really start this thing for the money, but now I need money to be able to think well, and upskill better, and not always be in mad survival mode.",
             "Can't lie it's been hard combining with school. I haven't gone home since year 1, always staying back in school during the holidays and grinding more. There's a lot to still do. It's turning from a hobby to something I must use to make ends meet and save myself and people around me.",
