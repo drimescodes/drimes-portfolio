@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 
+import { Thoughts, ThoughtDetail } from "./pages";
 import { Navbar, Loading, Footer } from "./components";
 import CubeSwipe from "./components/CubeSwipe";
 import NotFound from "./pages/NotFound";
@@ -40,6 +41,8 @@ function App() {
               <CubeSwipe
                 nonMainPage={
                   <Routes>
+                    <Route path="/thoughts" element={<Thoughts />} />
+                    <Route path="/thoughts/:slug" element={<ThoughtDetail />} />
                     <Route path="*" element={<NotFound />} />
                   </Routes>
                 }

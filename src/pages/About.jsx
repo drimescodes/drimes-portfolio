@@ -1,5 +1,6 @@
 import { drimes1 } from "../assets";
 import { NowPlayingYTM, VersionHistory } from "../components";
+import { Link } from "react-router-dom";
 
 const Introduction = () => {
   return (
@@ -47,7 +48,11 @@ const Introduction = () => {
               </a>{" "}
               reading annotations and I plan on making beats someday. I'm also
               into animated movies and hope to make one or at least a comic one
-              day.
+              day. Sometimes I{" "}
+              <Link to="/thoughts" className="text-[#54d5bb] hover:underline">
+                write down my thoughts
+              </Link>
+              .
             </p>
             <p className="text-[#cacaca] mb-4">
               You can peep what I'm listening to rn
