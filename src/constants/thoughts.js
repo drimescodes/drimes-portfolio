@@ -3,6 +3,17 @@
 const thoughts = [
 
     {
+        slug: "there-is-no-moat",
+        title: "There Is No Moat",
+        date: "25 October 2026",
+        content: [
+            "\"there is no moat\", says jack, the twitter co-founder, the guy behind bluesky and a bunch of other interesting tech ideas.",
+            "it is true, there's no moat i think. AI's come and buffed everyone's ability by x1000. AI's just gotten ridiculously good, so i wonder what the moat is now. what's my edge? what's your edge?",
+            "i think the moat was the friends we made along the way.",
+            "i'd wonder some more i think.",
+        ],
+    },
+    {
         slug: "flow-state-or-flaw-state",
         title: "Flow State or Flaw State",
         date: "14 March 2026",
