@@ -1,5 +1,6 @@
 import React, { useState, useRef, useCallback, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
 
 import Home from "../pages/Home";
 import About from "../pages/About";
@@ -8,11 +9,11 @@ import Projects from "../pages/Projects";
 import Contact from "../pages/Contact";
 
 const PAGES = [
-    { path: "/", component: Home },
-    { path: "/aboutme", component: About },
-    { path: "/experience", component: Experience },
-    { path: "/projects", component: Projects },
-    { path: "/contact", component: Contact },
+    { path: "/", label: "Home", component: Home },
+    { path: "/aboutme", label: "About", component: About },
+    { path: "/experience", label: "Experience", component: Experience },
+    { path: "/projects", label: "Projects", component: Projects },
+    { path: "/contact", label: "Contact", component: Contact },
 ];
 
 const CubeSwipe = ({ children, nonMainPage }) => {
@@ -30,21 +31,8 @@ const CubeSwipe = ({ children, nonMainPage }) => {
     const [animateTarget, setAnimateTarget] = useState(0);
     const [containerWidth, setContainerWidth] = useState(375);
     const [isMobile, setIsMobile] = useState(false);
-    const [showHint, setShowHint] = useState(false);
+    const [isPeeking, setIsPeeking] = useState(false);
 
-    // Show swipe hint on first mobile visit
-    useEffect(() => {
-        if (typeof window === "undefined") return;
-        const isMobileNow = window.innerWidth < 768;
-        if (isMobileNow && !sessionStorage.getItem("swipe-hint-seen")) {
-            setShowHint(true);
-            const timer = setTimeout(() => {
-                setShowHint(false);
-                sessionStorage.setItem("swipe-hint-seen", "true");
-            }, 8000);
-            return () => clearTimeout(timer);
-        }
-    }, []);
     // CubeSwipe owns the page index — no remounts on navigate
     const [pageIndex, setPageIndex] = useState(() => {
         const idx = PAGES.findIndex((p) => p.path === location.pathname);
@@ -66,6 +54,44 @@ const CubeSwipe = ({ children, nonMainPage }) => {
     const NextComponent =
         pageIndex < PAGES.length - 1 ? PAGES[pageIndex + 1].component : null;
 
+    // First mobile visit: nudge the cube toward the neighbouring page and back,
+    // so people see it can be swiped
+    useEffect(() => {
+        if (!isMobile || !isMainPage) return;
+        let seen = false;
+        try {
+            seen = !!sessionStorage.getItem("swipe-hint-seen");
+        } catch {
+            // storage blocked: still show the peek
+        }
+        if (seen) return;
+
+        const dir = NextComponent ? -1 : 1;
+        const peek = containerWidth * 0.2 * dir;
+        const timers = [
+            setTimeout(() => {
+                setIsSwiping(true);
+                setDragX(dir);
+            }, 1000),
+            setTimeout(() => {
+                setIsPeeking(true);
+                setDragX(peek);
+            }, 1050),
+            setTimeout(() => setDragX(dir), 1750),
+            setTimeout(() => {
+                setIsPeeking(false);
+                setIsSwiping(false);
+                setDragX(0);
+                try {
+                    sessionStorage.setItem("swipe-hint-seen", "true");
+                } catch {
+                    // storage blocked: the peek just shows again next visit
+                }
+            }, 2400),
+        ];
+        return () => timers.forEach(clearTimeout);
+    }, [isMobile]);
+
     useEffect(() => {
         const checkMobile = () => {
             setIsMobile(window.innerWidth < 768);
@@ -80,7 +106,7 @@ const CubeSwipe = ({ children, nonMainPage }) => {
 
     const handleTouchStart = useCallback(
         (e) => {
-            if (!isMainPage || !isMobile || isAnimating) return;
+            if (!isMainPage || !isMobile || isAnimating || isPeeking) return;
             touchStartRef.current = {
                 x: e.touches[0].clientX,
                 y: e.touches[0].clientY,
@@ -88,7 +114,7 @@ const CubeSwipe = ({ children, nonMainPage }) => {
             isDraggingRef.current = true;
             isLockedRef.current = false;
         },
-        [isMainPage, isMobile, isAnimating]
+        [isMainPage, isMobile, isAnimating, isPeeking]
     );
 
     const handleTouchMove = useCallback(
@@ -112,11 +138,6 @@ const CubeSwipe = ({ children, nonMainPage }) => {
 
             setIsSwiping(true);
             setDragX(deltaX);
-            // Dismiss hint on first swipe
-            if (showHint) {
-                setShowHint(false);
-                sessionStorage.setItem("swipe-hint-seen", "true");
-            }
         },
         [isMainPage, PrevComponent, NextComponent, isAnimating]
     );
@@ -159,6 +180,32 @@ const CubeSwipe = ({ children, nonMainPage }) => {
         };
     }, [handleTouchStart, handleTouchMove, handleTouchEnd]);
 
+    // Rotate the cube to the neighbouring page, same as a completed swipe.
+    // Settle into the 3D state first, then animate, so the faces don't jump.
+    const rotateTo = (dir) => {
+        const target = pageIndex + dir;
+        if (isAnimating || isPeeking || target < 0 || target >= PAGES.length) return;
+        setIsSwiping(true);
+        setDragX(-dir);
+        requestAnimationFrame(() =>
+            requestAnimationFrame(() => {
+                pendingNavRef.current = target;
+                setAnimateTarget(dir > 0 ? -90 : 90);
+                setIsAnimating(true);
+            })
+        );
+    };
+
+    const goToPage = (index) => {
+        if (index === pageIndex) return;
+        if (Math.abs(index - pageIndex) === 1) {
+            rotateTo(index - pageIndex);
+            return;
+        }
+        navigate(PAGES[index].path);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
     // Non-main page (e.g. /thoughts): render children from Routes normally
     if (!isMainPage) {
         return <div ref={containerRef}>{nonMainPage}</div>;
@@ -185,7 +232,7 @@ const CubeSwipe = ({ children, nonMainPage }) => {
         useTransition = true;
     } else if (isSwiping) {
         cubeRotation = dragX < 0 ? -angle : angle;
-        useTransition = false;
+        useTransition = isPeeking;
     } else {
         cubeRotation = 0;
         useTransition = false;
@@ -226,7 +273,61 @@ const CubeSwipe = ({ children, nonMainPage }) => {
         }
     };
 
+    const prevPage = PAGES[pageIndex - 1];
+    const nextPage = PAGES[pageIndex + 1];
+
+    // Rendered outside the perspective container: perspective makes it the
+    // containing block for fixed children, which would pin them to the page
+    // instead of the viewport
+    const pageNav = (
+        <nav
+            aria-label="Pages"
+            className="fixed bottom-0 left-0 right-0 z-50 grid grid-cols-[1fr_auto_1fr] items-center px-3 pt-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))] bg-[#1d1d20]/95 backdrop-blur border-t border-[#2c2c31] text-sm text-[#cacaca]"
+        >
+            <div className="justify-self-start">
+                {prevPage && (
+                    <button
+                        onClick={() => rotateTo(-1)}
+                        className="flex items-center py-2 pr-2 font-semibold"
+                    >
+                        <RiArrowLeftSLine size={22} className="text-[#54d5bb]" />
+                        {prevPage.label}
+                    </button>
+                )}
+            </div>
+            <div className="flex items-center">
+                {PAGES.map((page, i) => (
+                    <button
+                        key={page.path}
+                        onClick={() => goToPage(i)}
+                        aria-label={page.label}
+                        aria-current={i === pageIndex ? "page" : undefined}
+                        className="p-1.5"
+                    >
+                        <span
+                            className={`block h-2 rounded-full transition-all duration-300 ${
+                                i === pageIndex ? "w-5 bg-[#54d5bb]" : "w-2 bg-[#4a4a52]"
+                            }`}
+                        />
+                    </button>
+                ))}
+            </div>
+            <div className="justify-self-end">
+                {nextPage && (
+                    <button
+                        onClick={() => rotateTo(1)}
+                        className="flex items-center py-2 pl-2 font-semibold"
+                    >
+                        {nextPage.label}
+                        <RiArrowRightSLine size={22} className="text-[#54d5bb]" />
+                    </button>
+                )}
+            </div>
+        </nav>
+    );
+
     return (
+        <>
         <div
             ref={containerRef}
             style={{
@@ -241,7 +342,11 @@ const CubeSwipe = ({ children, nonMainPage }) => {
                     transform: showCube
                         ? `translateZ(-${tz}px) rotateY(${cubeRotation}deg)`
                         : "none",
-                    transition: useTransition ? "transform 0.3s ease-out" : "none",
+                    transition: useTransition
+                        ? isPeeking
+                            ? "transform 0.6s ease-in-out"
+                            : "transform 0.3s ease-out"
+                        : "none",
                     width: "100%",
                 }}
             >
@@ -290,52 +395,9 @@ const CubeSwipe = ({ children, nonMainPage }) => {
                     </div>
                 )}
             </div>
-
-            {/* Swipe hint */}
-            {showHint && (
-                <div
-                    style={{
-                        position: "fixed",
-                        bottom: "85px",
-                        left: 0,
-                        right: 0,
-                        display: "flex",
-                        justifyContent: "center",
-                        zIndex: 50,
-                        animation: "fadeInOut 4s ease-in-out forwards",
-                        pointerEvents: "none",
-                    }}
-                >
-                    <span
-                        style={{
-                            color: "#8892b0",
-                            fontSize: "13px",
-                            letterSpacing: "0.5px",
-                            display: "flex",
-                            alignItems: "center",
-                            gap: "8px",
-                        }}
-                    >
-                        <span style={{ animation: "nudge 1.2s ease-in-out infinite" }}>‹</span>
-                        swipe
-                        <span style={{ animation: "nudge 1.2s ease-in-out infinite reverse" }}>›</span>
-                    </span>
-                </div>
-            )}
-
-            <style>{`
-        @keyframes nudge {
-          0%, 100% { transform: translateX(0); }
-          50% { transform: translateX(-4px); }
-        }
-        @keyframes fadeInOut {
-          0% { opacity: 0; }
-          15% { opacity: 1; }
-          75% { opacity: 1; }
-          100% { opacity: 0; }
-        }
-      `}</style>
         </div>
+        {pageNav}
+        </>
     );
 };
 
