@@ -273,6 +273,30 @@ const CubeSwipe = ({ children, nonMainPage }) => {
         }
     };
 
+    // flow-root keeps the page's top margin inside the front face; otherwise
+    // it collapses out and shifts the whole cube down, so the side faces land
+    // 64px too low
+    const frontFaceStyle = {
+        display: "flow-root",
+        transform: showCube ? `translateZ(${tz}px)` : "none",
+        backfaceVisibility: "hidden",
+        width: "100%",
+    };
+    const sideFaceStyle = (role) => ({
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        minHeight: "100vh",
+        transform: `rotateY(${role === "next" ? 90 : -90}deg) translateZ(${tz}px)`,
+        backfaceVisibility: "hidden",
+    });
+    const faces = [
+        PrevComponent && showPrev && { index: pageIndex - 1, role: "prev" },
+        { index: pageIndex, role: "front" },
+        NextComponent && showNext && { index: pageIndex + 1, role: "next" },
+    ].filter(Boolean);
+
     const prevPage = PAGES[pageIndex - 1];
     const nextPage = PAGES[pageIndex + 1];
 
@@ -350,50 +374,20 @@ const CubeSwipe = ({ children, nonMainPage }) => {
                     width: "100%",
                 }}
             >
-                {/* Front face - current page */}
-                <div
-                    style={{
-                        transform: showCube ? `translateZ(${tz}px)` : "none",
-                        backfaceVisibility: "hidden",
-                        width: "100%",
-                    }}
-                >
-                    <CurrentComponent />
-                </div>
-
-                {/* Right face - next page */}
-                {NextComponent && showNext && (
-                    <div
-                        style={{
-                            position: "absolute",
-                            top: 0,
-                            left: 0,
-                            width: "100%",
-                            minHeight: "100vh",
-                            transform: `rotateY(90deg) translateZ(${tz}px)`,
-                            backfaceVisibility: "hidden",
-                        }}
-                    >
-                        <NextComponent />
-                    </div>
-                )}
-
-                {/* Left face - previous page */}
-                {PrevComponent && showPrev && (
-                    <div
-                        style={{
-                            position: "absolute",
-                            top: 0,
-                            left: 0,
-                            width: "100%",
-                            minHeight: "100vh",
-                            transform: `rotateY(-90deg) translateZ(${tz}px)`,
-                            backfaceVisibility: "hidden",
-                        }}
-                    >
-                        <PrevComponent />
-                    </div>
-                )}
+                {/* Faces are keyed by page, so when the cube lands the side face
+                    becomes the front face without remounting (no replayed
+                    entrance animations, no refetches) */}
+                {faces.map(({ index, role }) => {
+                    const Page = PAGES[index].component;
+                    return (
+                        <div
+                            key={PAGES[index].path}
+                            style={role === "front" ? frontFaceStyle : sideFaceStyle(role)}
+                        >
+                            <Page />
+                        </div>
+                    );
+                })}
             </div>
         </div>
         {pageNav}

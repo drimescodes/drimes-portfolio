@@ -6,7 +6,7 @@ const Introduction = () => {
   return (
     <div
       id="about"
-      className="flex justify-center min-h-screen md:px-4 mt-16 sm:mt-24"
+      className="flex justify-center min-h-screen md:px-4 mt-24 pt-2"
     >
       <div className="container mx-auto max-w-screen-lg">
         <div className="flex flex-col md:flex-row justify-center">

@@ -8,6 +8,9 @@ import ProjectDetail from "../components/ProjectDetail";
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
+  // On mobile the cube swipe is the transition; the cards render on a side face
+  // that never counts as "in view", so they'd pop in after the cube lands
+  const skipEntrance = typeof window !== "undefined" && window.innerWidth < 768;
 
   const animateProject = {
     hidden: { opacity: 0, y: 50 },
@@ -40,7 +43,7 @@ const Projects = () => {
     <>
       <section
         id="projects"
-        className="text-3xl mt-16 sm:mt-24 py-2 text-gray-500 font-medium text-center"
+        className="text-3xl mt-24 py-2 text-gray-500 font-medium text-center"
       >
         <h2>Projects</h2>
       </section>
@@ -48,7 +51,7 @@ const Projects = () => {
         <motion.div
           className="w-full grid md:grid-cols-2 gap-8"
           variants={animateProject}
-          initial="hidden"
+          initial={skipEntrance ? "animate" : "hidden"}
           whileInView="animate"
           viewport={{ once: true }}
         >
